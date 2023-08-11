@@ -165,4 +165,3 @@ if __name__ == "__main__":
                     if opt['use_tensorboard']:
                         for tag, value in m0.items():
                             logger.scalar_summary(tag, value, i + 1)
-

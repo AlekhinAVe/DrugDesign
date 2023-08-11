@@ -45,4 +45,3 @@ class BaseModel():
         s = str(network)
         n = sum(map(lambda x: x.numel(), network.parameters()))
         return s, n
-

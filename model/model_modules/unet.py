@@ -245,4 +245,3 @@ class UNet(nn.Module):
                 x = layer(x)
 
         return self.final_conv(x)
-

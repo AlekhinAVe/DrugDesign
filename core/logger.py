@@ -139,4 +139,3 @@ def setup_logger(logger_name, root, phase, level=logging.INFO, screen=False):
         sh = logging.StreamHandler()
         sh.setFormatter(formatter)
         l.addHandler(sh)
-

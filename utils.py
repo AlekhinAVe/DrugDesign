@@ -328,4 +328,3 @@ def all_scores(mols, data, norm=False, reconstruction=False):
           'novel score': MolecularMetrics.novel_total_score(mols, data) * 100}
 
     return m0, m1
-

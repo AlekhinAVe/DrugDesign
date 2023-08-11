@@ -116,4 +116,3 @@ class WandbLogger:
             self._wandb.log({'eval_data': self.eval_table}, commit=commit)
         elif self.infer_table:
             self._wandb.log({'infer_data': self.infer_table}, commit=commit)
-
