@@ -289,3 +289,4 @@ if __name__ == '__main__':
     data = SparseMolecularDataset()
     data.generate('gdb9.sdf', filters=lambda x: x.GetNumAtoms() <= 9)
     data.save('gdb9_9nodes.sparsedataset')
+
