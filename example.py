@@ -25,6 +25,7 @@ if __name__ == "__main__":
     parser.add_argument('-log_wandb_ckpt', action='store_true')
 
     # my_code________
+    #parser.add_argument('--mol_data_dir', type=str, default='data/gdb9_9nodes.sparsedataset')
 
     # Training configuration.
     parser.add_argument('--batch_size', type=int, default=16, help='mini-batch size')
@@ -47,7 +48,7 @@ if __name__ == "__main__":
     #parser.add_argument('--use_tensorboard', type=str2bool, default=False)
 
     # Directories.
-    parser.add_argument('--mol_data_dir', type=str, default='data/gdb9_9nodes.sparsedataset')
+    #parser.add_argument('--mol_data_dir', type=str, default='data/gdb9_9nodes.sparsedataset')
     parser.add_argument('--log_dir', type=str, default='molgan/logs')
     parser.add_argument('--model_save_dir', type=str, default='molgan/models')
     parser.add_argument('--sample_dir', type=str, default='molgan/samples')
@@ -102,7 +103,8 @@ if __name__ == "__main__":
     data.load(opt['mol_data_dir'])
 
     # model
-    diffusion = Model.create_model(opt)
+    from model.model import DDPM as M
+    diffusion = M(opt)
     logger.info('Initial Model Finished')
 
     # Train

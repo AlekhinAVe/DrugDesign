@@ -1,5 +1,6 @@
 {
     "name": "generation_ffhq",
+    "mol_data_dir": "data/gdb9_9nodes.sparsedataset",
     "phase": "train", // train or val
     "gpu_ids": [
         0
