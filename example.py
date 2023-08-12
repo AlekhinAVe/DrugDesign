@@ -84,9 +84,9 @@ if __name__ == "__main__":
     else:
         wandb_logger = None
 
-    def label2onehot(self, labels, dim):
+    def label2onehot(labels, dim):
         """Convert label indices to one-hot vectors."""
-        out = torch.zeros(list(labels.size()) + [dim]).to(self.device)
+        out = torch.zeros(list(labels.size()) + [dim]).to(device)
         out.scatter_(len(out.size()) - 1, labels.unsqueeze(-1), 1.)
         return out
 
@@ -101,6 +101,10 @@ if __name__ == "__main__":
     # data
     data = SparseMolecularDataset()
     data.load(opt['mol_data_dir'])
+
+    #parameters
+    m_dim = data.atom_num_types
+    b_dim = data.bond_num_types
 
     # model
     from model.model import DDPM as M
@@ -132,8 +136,8 @@ if __name__ == "__main__":
                 a = torch.from_numpy(a).to(device).long()  # Adjacency.
                 x = torch.from_numpy(x).to(device).long()  # Nodes.
                 # converting 'a', 'x' to tensors
-                a_tensor = label2onehot(a, opt['b_dim'])
-                x_tensor = label2onehot(x, opt['m_dim'])
+                a_tensor = label2onehot(a, b_dim)
+                x_tensor = label2onehot(x, m_dim)
                 diffusion.feed_data(a_tensor, x_tensor)
                 diffusion.optimize_parameters()
                 # log
@@ -166,3 +170,4 @@ if __name__ == "__main__":
                     if opt['use_tensorboard']:
                         for tag, value in m0.items():
                             logger.scalar_summary(tag, value, i + 1)
+
