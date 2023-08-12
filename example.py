@@ -94,8 +94,8 @@ if __name__ == "__main__":
 
     # prepare_data
     data_prepare = SparseMolecularDataset()
-    data_prepare.generate('gdb9.sdf', filters=lambda x: x.GetNumAtoms() <= 9)
-    data_prepare.save('gdb9_9nodes.sparsedataset')
+    data_prepare.generate('data/gdb9.sdf', filters=lambda x: x.GetNumAtoms() <= 9)
+    data_prepare.save('data/gdb9_9nodes.sparsedataset')
 
     # data
     data = SparseMolecularDataset()
