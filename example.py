@@ -15,7 +15,7 @@ import datetime
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--config', type=str, default='config/sample_sr3_128.json',
+    parser.add_argument('-c', '--config', type=str, default='config/config',
                         help='JSON file for configuration')
     parser.add_argument('-p', '--phase', type=str, choices=['train', 'val'],
                         help='Run either train(training) or val(generation)', default='train')
@@ -25,7 +25,6 @@ if __name__ == "__main__":
     parser.add_argument('-log_wandb_ckpt', action='store_true')
 
     # my_code________
-    parser.add_argument('--mol_data_dir', type=str, default='data/gdb9_9nodes.sparsedataset')
 
     # Training configuration.
     parser.add_argument('--batch_size', type=int, default=16, help='mini-batch size')
@@ -94,9 +93,9 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # prepare_data
-    data = SparseMolecularDataset()
-    data.generate('gdb9.sdf', filters=lambda x: x.GetNumAtoms() <= 9)
-    data.save('gdb9_9nodes.sparsedataset')
+    data_prepare = SparseMolecularDataset()
+    data_prepare.generate('gdb9.sdf', filters=lambda x: x.GetNumAtoms() <= 9)
+    data_prepare.save('gdb9_9nodes.sparsedataset')
 
     # data
     data = SparseMolecularDataset()
